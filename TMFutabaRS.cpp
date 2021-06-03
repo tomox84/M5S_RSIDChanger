@@ -2,6 +2,8 @@
 // ---------------------------------------
 // TMFutabaRS クラス
 // ver. 1.0 2021-05-19
+// ver. 1.0.1 2021-05-31
+// ver. 1.0.2 2021-06-03
 //
 // Futabaのサーボモータ　コマンド制御クラス
 // ---------------------------------------
@@ -826,10 +828,9 @@ void TMFutabaRS::MoveTime(int Tms) {
   機能: ChangeBaudRate
   引数
      ComSpeed: 通信速度 (COM9600,,,COM115200など)
-     SerialOut: 表示用Serial
   戻値: なし
   -------------------------------------------------*/
-void TMFutabaRS::ChangeBaudRate(unsigned char ComSpeed, HardwareSerial* SerialOut) {
+void TMFutabaRS::ChangeBaudRate(unsigned char ComSpeed) {
   // 送信データ
   const size_t sizeData = 9;
   unsigned char txData[sizeData];
@@ -861,24 +862,16 @@ void TMFutabaRS::ChangeBaudRate(unsigned char ComSpeed, HardwareSerial* SerialOu
   // サーボ再起動
   reboot();
 
-  SerialOut->println("*****************************");
-  SerialOut->println(" COM Speed changed !!");
-  SerialOut->println(" Please reload program");
-  SerialOut->println("*****************************");
-
-  while (-1) {
-    delay(1000);
-  }
+  delay(1000);
 }
 
 /*-------------------------------------------------
   名前: 初期状態（工場出荷値）へ戻す
   機能: ResetFactoryDefault
-  引数
-     SerialOut: 表示用Serial
+  引数: なし
   戻値: なし
   -------------------------------------------------*/
-void TMFutabaRS::ResetFactoryDefault(HardwareSerial* SerialOut) {
+void TMFutabaRS::ResetFactoryDefault(void) {
   // 送信データ
   const size_t sizeData = 8;
   unsigned char txData[sizeData];
@@ -909,14 +902,7 @@ void TMFutabaRS::ResetFactoryDefault(HardwareSerial* SerialOut) {
   // サーボ再起動
   reboot();
 
-  SerialOut->println("*****************************");
-  SerialOut->println(" Reset factory default !!");
-  SerialOut->println(" Please reload program");
-  SerialOut->println("*****************************");
-
-  while (-1) {
-    delay(1000);
-  }
+  delay(1000);
 }
 
 /*-------------------------------------------------
@@ -926,7 +912,7 @@ void TMFutabaRS::ResetFactoryDefault(HardwareSerial* SerialOut) {
      SerialOut: 表示用Serial
   戻値: なし
   -------------------------------------------------*/
-void TMFutabaRS::RewriteID(unsigned char newId, HardwareSerial* SerialOut) {
+void TMFutabaRS::RewriteID(unsigned char newId) {
   // 送信データ
   const size_t sizeData = 9;
   unsigned char txData[sizeData];
@@ -961,14 +947,7 @@ void TMFutabaRS::RewriteID(unsigned char newId, HardwareSerial* SerialOut) {
   // サーボ再起動
   reboot();
 
-  SerialOut->println("*****************************");
-  SerialOut->printf(" Rewrite ID (%d) !!\n", newId);
-  SerialOut->println(" Please reload program");
-  SerialOut->println("*****************************");
-
-  while (-1) {
-    delay(1000);
-  }
+  delay(1000);
 }
 
 

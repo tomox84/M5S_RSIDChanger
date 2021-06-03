@@ -2,6 +2,7 @@
   TMFutabaRS クラス
   ver. 1.0 2021-05-19
   ver. 1.0.1 2021-05-31
+  ver. 1.0.2 2021-06-03
 
   Futabaのサーボモータ　コマンド制御クラス
   動作確認 Futaba サーボ
@@ -22,8 +23,11 @@
     ChangeID(IDの書き換え)をRewriteIDに名称変更
     ChangeID(IDの変更)の関数追加
     WaitGoal(サーボの移動を待つ)の関数追加
-    
-    
+
+  v1.0.2
+    ChangeBaudRate(通信速度の変更)の引数変更
+    ResetFactoryDefault(工場出荷値へのリセット)の引数変更
+    RewriteID(IDの書き換え)の引数変更
   
   ---------------------------------------*/
 #pragma once
@@ -87,7 +91,7 @@ class TMFutabaRS {
 
   public:
     // バージョン
-    const String Version = "1.0.1";
+    const String Version = "1.0.2";
     
     // Memory Map 00-29(詳細はRS304のマニュアルを参照のこと)
     short int ModelNumber = 0;
@@ -164,13 +168,13 @@ class TMFutabaRS {
     boolean Ack(void);
 
     // 通信速度の変更
-    void ChangeBaudRate(unsigned char ComSpeed, HardwareSerial* SerialOut);
+    void ChangeBaudRate(unsigned char ComSpeed);
 
     // 工場出荷値へのリセット
-    void ResetFactoryDefault(HardwareSerial* SerialOut);
+    void ResetFactoryDefault(void);
 
     // IDの書き換え
-    void RewriteID(unsigned char newID, HardwareSerial* SerialOut);
+    void RewriteID(unsigned char newID);
 
     // トルク
     void TorqueOn(void);
