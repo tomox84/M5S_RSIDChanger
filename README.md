@@ -1,3 +1,3 @@
 # M5S_RSIDChanger
 
-![CurrentID](./img/imgA.JPG)
+<img src="./img/imgA.JPG" width="50%">
